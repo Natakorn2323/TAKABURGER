@@ -15,7 +15,7 @@ export default function OrderMenuList() {
           return (
             <div key={item.title} className="order-card">
               {item.badge && <span className="card-badge">{item.badge}</span>}
-              <span className="order-card-emoji">{item.emoji}</span>
+              {/*<span className="order-card-emoji">{item.emoji}</span>*/} 
               <h3>{item.title}</h3>
               <p>{item.description}</p>
               <div className="order-card-footer">
