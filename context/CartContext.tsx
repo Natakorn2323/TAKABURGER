@@ -26,16 +26,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([])
 
   const addToCart = (item: typeof menuItems[0]) => {
+    const itemWithEmoji = item as typeof menuItems[0] & { emoji?: string }
     setCart((prev) => {
-      const exist = prev.find((c) => c.title === item.title)
+      const exist = prev.find((c) => c.title === itemWithEmoji.title)
       if (exist) return prev.map((c) =>
-        c.title === item.title ? { ...c, qty: c.qty + 1 } : c
+        c.title === itemWithEmoji.title ? { ...c, qty: c.qty + 1 } : c
       )
       return [...prev, {
-        title: item.title,
-        price: item.price,
-        unit: item.unit,
-        emoji: item.emoji,
+        title: itemWithEmoji.title,
+        price: itemWithEmoji.price,
+        unit: itemWithEmoji.unit,
+        emoji: itemWithEmoji.emoji ?? '',
         qty: 1,
       }]
     })
